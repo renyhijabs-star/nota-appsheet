@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="tengah">
-        <strong id="nama_toko"> RENY HIJAB PADANG </strong><br>
+        <strong>RENY HIJAB PADANG</strong><br>
         <span id="alamat_toko">Alamat...</span><br>
         <span id="telp_toko">Telp...</span>
     </div>
@@ -29,9 +29,7 @@
                 <th class="Kanan">Harga</th>
             </tr>
         </thead>
-        <tbody id="list_produk">
-            <!-- Data produk dari AppSheet akan muncul otomatis di sini -->
-        </tbody>
+        <tbody id="list_produk"></tbody>
     </table>
     <div class="garis"></div>
     <table>
@@ -43,10 +41,8 @@
     <div class="tengah">Terima Kasih.</div>
 
     <script>
-        // Mengambil data dari link URL AppSheet
         const params = new URLSearchParams(window.location.search);
         
-        document.getElementById('nama_toko').innerText = params.get('nama_toko') || 'RENY HIJAB PADANG';
         document.getElementById('alamat_toko').innerText = params.get('alamat_toko') || 'Alamat...';
         document.getElementById('telp_toko').innerText = params.get('telp_toko') || 'Telp...';
         document.getElementById('id_transaksi').innerText = params.get('id_transaksi') || '-';
@@ -55,24 +51,26 @@
         document.getElementById('tunai').innerText = params.get('tunai') || '0';
         document.getElementById('kembali').innerText = params.get('kembali') || '0';
 
-        // Memecah data produk yang banyak (List) menjadi baris tabel
-        const namaProduk = (params.get('nama_produk') || '').split(' , ');
-        const qty = (params.get('qty') || '').split(' , ');
-        const harga = (params.get('harga_produk') || '').split(' , ');
+        // Membaca daftar produk dengan pemisah bawaan AppSheet
+        let pNama = params.get('nama_produk') || '';
+        let pQty = params.get('qty') || '';
+        let pHarga = params.get('harga_produk') || '';
+
+        let listNama = pNama.includes(' , ') ? pNama.split(' , ') : pNama.split(',');
+        let listQty = pQty.includes(' , ') ? pQty.split(' , ') : pQty.split(',');
+        let listHarga = pHarga.includes(' , ') ? pHarga.split(' , ') : pHarga.split(',');
 
         const tbody = document.getElementById('list_produk');
-        for (let i = 0; i < namaProduk.length; i++) {
-            if (namaProduk[i]) {
+        for (let i = 0; i < listNama.length; i++) {
+            if (listNama[i].trim()) {
                 let row = `<tr>
-                    <td>${namaProduk[i]}</td>
-                    <td align="center">${qty[i] || 0}</td>
-                    <td class="Kanan">${harga[i] || 0}</td>
+                    <td>${listNama[i].trim()}</td>
+                    <td align="center">${listQty[i] ? listQty[i].trim() : 0}</td>
+                    <td class="Kanan">${listHarga[i] ? listHarga[i].trim() : 0}</td>
                 </tr>`;
                 tbody.innerHTML += row;
             }
         }
-
-        // Otomatis membuka perintah print saat halaman terbuka
         window.print();
     </script>
 </body>
