@@ -1,114 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Nota Penjualan</title>
-<style>
-body{
-  font-family: Arial, sans-serif;
-  max-width: 350px;
-  margin:auto;
-}
-.center{
-  text-align:center;
-}
-table{
-  width:100%;
-  border-collapse:collapse;
-}
-td{
-  padding:3px;
-}
-hr{
-  border:1px dashed black;
-}
-button{
-  width:100%;
-  padding:8px;
-}
-</style>
-</head>
-<body>
+RENY HIJAB PADANG
+Alamat...
+Telp...
 
-<div class="center">
-  <h2 id="nama_toko"></h2>
-  <div id="alamat"></div>
-  <div id="telp"></div>
-</div>
+No Transaksi : <<[No_Transaksi]>>
+Tanggal      : <<[Tanggal]>>
 
-<hr>
+--------------------------------
+Produk      Qty   Harga
+--------------------------------
+<<Start:[Detail_Belanja]>>
+<<[Nama_Produk]>>       <<[Qty]>>     <<[Harga]>>
+<<End>>
+--------------------------------
 
-<p>No Transaksi : <span id="id"></span></p>
-<p>Tanggal : <span id="tanggal"></span></p>
+Total       : <<[Total]>>
+Tunai       : <<[Tunai]>>
+Kembalian   : <<[Kembalian]>>
 
-<hr>
-
-<table>
-<tr>
-<td>Produk</td>
-<td>Qty</td>
-<td>Harga</td>
-</tr>
-
-<tr>
-<td id="produk"></td>
-<td id="qty"></td>
-<td id="harga"></td>
-</tr>
-</table>
-
-<hr>
-
-<p>Total : Rp <span id="total"></span></p>
-<p>Tunai : Rp <span id="tunai"></span></p>
-<p>Kembalian : Rp <span id="kembali"></span></p>
-
-<hr>
-
-<div class="center">
-Terima Kasih
-</div>
-
-<br>
-
-<button onclick="window.print()">PRINT</button>
-
-<script>
-const p = new URLSearchParams(window.location.search);
-
-document.getElementById("nama_toko").innerText =
-p.get("nama_toko") || "";
-
-document.getElementById("alamat").innerText =
-p.get("alamat_toko") || "";
-
-document.getElementById("telp").innerText =
-p.get("telp_toko") || "";
-
-document.getElementById("id").innerText =
-p.get("id_transaksi") || "";
-
-document.getElementById("tanggal").innerText =
-p.get("tanggal") || "";
-
-document.getElementById("produk").innerText =
-p.get("nama_produk") || "";
-
-document.getElementById("qty").innerText =
-p.get("qty") || "";
-
-document.getElementById("harga").innerText =
-p.get("harga_produk") || "";
-
-document.getElementById("total").innerText =
-p.get("total") || "";
-
-document.getElementById("tunai").innerText =
-p.get("tunai") || "";
-
-document.getElementById("kembali").innerText =
-p.get("kembali") || "";
-</script>
-
-</body>
-</html>
+Terima Kasih.
