@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nota Penjualan</title>
+</head>
+<body>
+
+<h2 id="nama_toko"></h2>
+<p>No Transaksi: <span id="id_transaksi"></span></p>
+<p>Total: Rp <span id="total"></span></p>
+
+<button onclick="window.print()">Print</button>
+
+<script>
+const p = new URLSearchParams(window.location.search);
+
+document.getElementById("nama_toko").innerText =
+p.get("nama_toko") || "";
+
+document.getElementById("id_transaksi").innerText =
+p.get("id_transaksi") || "";
+
+document.getElementById("total").innerText =
+p.get("total") || "";
+</script>
+
+</body>
+</html>
